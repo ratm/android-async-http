@@ -320,6 +320,11 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
         if (missingLooper) {
             Looper.prepare();
         }
+        
+        if (null == handler){
+          handler = new ResponderHandler(this);
+        }
+        
         if (null != runnable) {
             handler.post(runnable);
         }
