@@ -91,7 +91,7 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
 
     protected static final int BUFFER_SIZE = 4096;
 
-    private final Handler handler;
+    private Handler handler;
     public static final String DEFAULT_CHARSET = "UTF-8";
     private String responseCharset = DEFAULT_CHARSET;
     private Boolean useSynchronousMode = false;
@@ -163,9 +163,6 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
      * Creates a new AsyncHttpResponseHandler
      */
     public AsyncHttpResponseHandler() {
-        // There is always a handler ready for delivering messages.
-        handler = new ResponderHandler(this);
-
         // Init Looper by calling postRunnable without argument
         postRunnable(null);
     }
