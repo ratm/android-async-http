@@ -162,7 +162,8 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
     /**
      * Creates a new AsyncHttpResponseHandler
      */
-    public AsyncHttpResponseHandler() {
+    public AsyncHttpResponseHandler() {      
+        handler = new ResponderHandler(this);
         // Init Looper by calling postRunnable without argument
         postRunnable(null);
     }
@@ -319,10 +320,6 @@ public abstract class AsyncHttpResponseHandler implements ResponseHandlerInterfa
         boolean missingLooper = null == Looper.myLooper();
         if (missingLooper) {
             Looper.prepare();
-        }
-        
-        if (null == handler){
-          handler = new ResponderHandler(this);
         }
         
         if (null != runnable) {
